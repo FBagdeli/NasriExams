@@ -9,22 +9,47 @@ fun main() {
 
 fun lastWord(string: String) : Int {
 
-    val newString = string.reversed()
-    var i = 0
-    if (newString[0] == ' ') {
-        while (newString[i + 1] != ' ') {
-            i++
+    var lengthString = string.length -1
+
+    var lengthLastWord = 0
+    if (string[lengthString] == ' ')
+    {
+        while (string[lengthString -1] != ' '){
+            lengthLastWord++
+            lengthString --
         }
-        for (a in i downTo 1) {
-            print(newString[a])
-        }
-    } else {
-        while (newString[i] != ' ') {
-            i++
-        }
-        for (a in i downTo 0) {
-            print(newString[a])
+    }else{
+        while (string[lengthString] != ' '){
+            lengthLastWord++
+            lengthString --
         }
     }
-    return i
+
+    return lengthLastWord
+
+
+
+
+
+
+
+
+//    val newString = string.reversed()
+//    var i = 0
+//    if (newString[0] == ' ') {
+//        while (newString[i + 1] != ' ') {
+//            i++
+//        }
+//        for (a in i downTo 1) {
+//            print(newString[a])
+//        }
+//    } else {
+//        while (newString[i] != ' ') {
+//            i++
+//        }
+//        for (a in i downTo 0) {
+//            print(newString[a])
+//        }
+//    }
+//    return i
 }
