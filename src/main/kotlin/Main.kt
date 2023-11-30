@@ -1,43 +1,34 @@
-
 fun main() {
-    println( reserveNumbers(123))
-    println( reserveNumbers(-123))
-    println( reserveNumbers(120))
-    println(reserveNumbers(2147483647))
-    println(reserveNumbers(-2147483647))
-    println(reserveNumbers(-2147483648))
-    println(reserveNumbers(-999))
-    println(reserveNumbers(99))
-    println(reserveNumbers(-1000000000))
+    println(reversedNumber(123))
+    println(reversedNumber(-123))
+    println( reversedNumber(120))
+    println(reversedNumber(2147483647))
+    println(reversedNumber(-2147483648))
+    println(reversedNumber(-2117483600))
+    println(reversedNumber(2147483600))
+
 }
 
-fun reserveNumbers(x: Int): Int {
-    val maxValue = "2147483647"
-    val minValue = "-2147483648"
+//Solution1
+fun reversedNumber(x: Int): Int {
     var newX = x
-    var reservedNumber: Int = 0
+    var reversedNumber: Int = 0
 
-    if (newX<0){
-        newX *=-1
-        if (x< -1_000_000_000){
-            val stringX = newX.toString()
-            if (stringX < minValue)
-                return 0
+    if (newX < 0) {
+        newX *= -1
+        try {
+            reversedNumber = newX.toString().reversed().toInt() * -1
+        } catch (e: NumberFormatException) {
+            println("The Reversed Number is bigger than Int Type")
         }
-        else{
-            val stringX = newX.toString()
-            (stringX.reversed().toInt() * -1).also { reservedNumber = it }
-        }
-    }else{
-        val stringX = x.toString()
-        if (x>1000000000){
-            if (stringX > minValue)
-                return 0
-        }else{
-            reservedNumber = stringX.reversed().toInt()
+    } else {
+        try {
+            reversedNumber = x.toString().reversed().toInt()
+        } catch (e: NumberFormatException) {
+            println("The Reversed Number is bigger than Int Type")
         }
     }
-    return reservedNumber
+    return reversedNumber
 }
 
 
