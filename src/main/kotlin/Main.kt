@@ -5,31 +5,39 @@ fun main() {
     println( reserveNumbers(120))
     println(reserveNumbers(2147483647))
     println(reserveNumbers(-2147483647))
+    println(reserveNumbers(-2147483648))
+    println(reserveNumbers(-999))
+    println(reserveNumbers(99))
+    println(reserveNumbers(-1000000000))
 }
 
 fun reserveNumbers(x: Int): Int {
-    val maxValue: Int = 2147483647
-    val minValue: Int = -2147483647
+    val maxValue = "2147483647"
+    val minValue = "-2147483648"
     var newX = x
-    val reservedNumber : Long
+    var reservedNumber: Int = 0
 
     if (newX<0){
-        newX *= -1
-        val stringX = newX.toString()
-        reservedNumber = (stringX.reversed().toLong() * -1)
-
-        return if (reservedNumber in (minValue + 1)..<maxValue) {
-            reservedNumber.toInt()
-        } else 0
+        newX *=-1
+        if (x< -1_000_000_000){
+            val stringX = newX.toString()
+            if (stringX < minValue)
+                return 0
+        }
+        else{
+            val stringX = newX.toString()
+            (stringX.reversed().toInt() * -1).also { reservedNumber = it }
+        }
     }else{
         val stringX = x.toString()
-        reservedNumber = stringX.reversed().toLong()
-
-        return if (reservedNumber in (minValue + 1)..<maxValue) {
-            reservedNumber.toInt()
-        } else 0
-
+        if (x>1000000000){
+            if (stringX > minValue)
+                return 0
+        }else{
+            reservedNumber = stringX.reversed().toInt()
+        }
     }
+    return reservedNumber
 }
 
 
